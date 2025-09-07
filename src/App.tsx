@@ -12,9 +12,9 @@ function App() {
         setAuthStatus('logged_in');
     };
 
-    const handleLogout = () => {
-        setAuthStatus('logged_out');
-    };
+    // const handleLogout = () => {
+    //     setAuthStatus('logged_out');
+    // };
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
