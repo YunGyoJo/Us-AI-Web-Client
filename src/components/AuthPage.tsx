@@ -1,3 +1,6 @@
+import { GoogleLogin } from '@react-oauth/google';
+import logoImage from '../assets/logo-144.png';
+
 interface AuthPageProps {
     onLoginSuccess: () => void;
 }
@@ -5,14 +8,24 @@ interface AuthPageProps {
 function AuthPage({ onLoginSuccess }: AuthPageProps) {
     return (
         <div className="auth-container">
-            <h1 className="logo">Us AI</h1>
             <div className="options-container">
+                <h1 className="logo">Us AI</h1>
+                <img src={logoImage} alt="logo image" className="logo-image" />
                 <h1>
                     <span className="login-text">로그인 또는 회원 가입</span>
                 </h1>
-                <button onClick={onLoginSuccess}>Github로 계속하기</button>
-                <button onClick={onLoginSuccess}>Google로 계속하기</button>
-                <button onClick={onLoginSuccess}>Kakao로 계속하기</button>
+                <GoogleLogin
+                    onSuccess={tokenResponse => {
+                        console.log(tokenResponse);
+                        onLoginSuccess();
+                    }}
+                    onError={() => {
+                        console.log('Login Failed');
+                    }}
+                    text='continue_with'
+                    shape='pill'
+                    width={300}
+                />
             </div>
         </div>
     );

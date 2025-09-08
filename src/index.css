@@ -43,31 +43,37 @@ body {
     align-items: center;
 }
 
-.logo {
-    position: fixed;
-    top: 20px;
-    left: 30px;
-    margin: 0;
-    padding: 0;
-    z-index: 1000;
-    font-size: 30px;
-    color: #000000;
-}
-
 .options-container {
     display: flex;
-    width: 350px;
-    height: 600px;
+    width: 375px;
+    height: 500px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 40px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #E0E0E0;
+}
+
+.options-container h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.logo {
+    z-index: 1000;
+    font-size: 60px;
+    font-weight: 600;
+    color: #000000;
 }
 
 .login-text {
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 500;
     color: #000000;
     margin: 0;
+    padding: 0;
 }
 
 .main-content {

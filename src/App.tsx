@@ -4,6 +4,9 @@ import ChatWindow from './components/ChatWindow';
 import MessageInput from './components/MessageInput';
 import AuthPage from './components/AuthPage';
 import type { Message, AuthStatus } from './types';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+const Google_CLIENT_ID = "1046578829833-t3gss5mknjejemkq45md733acq0s1hkl.apps.googleusercontent.com";
 
 function App() {
     const [authStatus, setAuthStatus] = useState<AuthStatus>('logged_out');
@@ -11,10 +14,6 @@ function App() {
     const handleLoginSuccess = () => {
         setAuthStatus('logged_in');
     };
-
-    // const handleLogout = () => {
-    //     setAuthStatus('logged_out');
-    // };
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -37,20 +36,20 @@ function App() {
         setMessages((prevMessage) => [...prevMessage, newUserMessage]);
     }
 
-    if (authStatus === 'logged_out') {
-        return (
-            <AuthPage onLoginSuccess={handleLoginSuccess} />
-        );
-    }
-
     return (
-        <div className="app-container">
-            <Sidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
-            <main className="main-content">
-                <ChatWindow messages={messages} />
-                <MessageInput onSendMessage={handleSendMessage} />
-            </main>
-        </div>
+        <GoogleOAuthProvider clientId={Google_CLIENT_ID}>
+            {authStatus === 'logged_out' ? (
+                <AuthPage onLoginSuccess={handleLoginSuccess} />
+            ) : (
+                <div className="app-container">
+                    <Sidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
+                    <main className="main-content">
+                        <ChatWindow messages={messages} />
+                        <MessageInput onSendMessage={handleSendMessage} />
+                    </main>
+                </div>
+            )}
+        </GoogleOAuthProvider>
     );
 }
 
