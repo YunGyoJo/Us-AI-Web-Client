@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import ChatWindow from './components/ChatWindow';
 import MessageInput from './components/MessageInput';
-import AuthPage from './components/AuthPage';
+import AuthPage from './pages/AuthPage';
 import type { Message, AuthStatus } from './types';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
